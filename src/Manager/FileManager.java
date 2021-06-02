@@ -32,6 +32,7 @@ public class FileManager {
         try {
             fileWriter = new FileWriter(fileName);
             fileWriter.write(result);
+            fileWriter.flush(); // You don't have to use Flush
             fileWriter.close();
 
         } catch (Exception e) {

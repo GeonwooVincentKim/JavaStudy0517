@@ -9,14 +9,14 @@ import Manager.FileManager;
 import static java.lang.System.out;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.Writer;
 
 public class Q2 {
-    public static Scanner readFile(FileManager fManager, String fileName){
+    public static Scanner readFile(FileManager fManager, String fileName) {
         return fManager.readFile(fileName);
     }
 
-    public static void writeFile(FileManager fManager, String result){
+    public static void writeFile(FileManager fManager, String result) {
         fManager.writeFile("result2.txt", result);
     }
 
@@ -97,31 +97,31 @@ public class Q2 {
         return result;
     }
 
-    public static void writeResult(Scanner getResult, FileManager mFM){
+    public static void writeResult(Scanner getResult, FileManager mFM) {
         String getData = getData(getResult);
         writeFile(mFM, getData);
     }
 
-    public static void sub_main_q2(int userInput){
+    public static void sub_main_q2(int userInput) {
         Scanner mainMenuInput = new Scanner(System.in);
         System.out.println("선택하세요.\n1. File 입출력\n2. 직접 입력");
         int selectNum = mainMenuInput.nextInt();
-        
+
         File file = new File("data2.txt");
 
         Scanner fileReader = null;
-        FileWriter fileWriter = null;
-        
+        Writer fileWriter = null;
+
         FileManager mFM = new FileManager(file, fileWriter, fileReader);
 
-        if(selectNum == 1){
-            fileReader = readFile(mFM, "data2.txt");    
+        if (selectNum == 1) {
+            fileReader = readFile(mFM, "data2.txt");
             writeResult(fileReader, mFM);
             mainMenuInput.close();
-            
-        } else if (selectNum == 2){
+
+        } else if (selectNum == 2) {
             fileReader = new Scanner(System.in);
-            out.print("데이터의 수량을 입력해주세요 : "); 
+            out.print("데이터의 수량을 입력해주세요 : ");
             writeResult(fileReader, mFM);
             mainMenuInput.close();
         }

@@ -42,19 +42,38 @@ public class Q2 {
         return setResult;
     }
 
-    public static void bubbleSort(List<Integer> cntList, int tempValue, int currentValue, int i, int j, int nextValue) {
+    public static void bubbleSort(List<Integer> countList, int tempValue, int currentValue, int i, int j,
+            int nextValue) {
         tempValue = currentValue;
-        cntList.set(i, nextValue);
-        cntList.set(j, tempValue);
+        countList.set(i, nextValue);
+        countList.set(j, tempValue);
+    }
+
+    public static int freq(List<Integer> countList, int n) {
+        int i;
+        int count = 0;
+
+        for (i = 0; i < countList.size(); i++) {
+            if (countList.get(i) == n) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     public static String getData(Scanner fileReader) {
+        /*
+         * 1. 배열에 random 값 담기 2. 중복 제거 된 배열 만들기 (contains 함수 사용 금지 - 새로 들어온 숫자가 기존 배열에
+         * 있는지 체크하는 함수하나 만들기) 3. 중복 제거 된 배열 루프 돌면서 각각 몇 번 발생한 횟수 (발생 횟수 세는 함수 만들기) 4.
+         * 발생한 횟수로 역순 정렬 5. 출력
+         */
         int T = Integer.parseInt(fileReader.nextLine()); // 생성할 랜덤 값 개수
         int printT = 5; // 출력할 랜덤 값 개수
         String result = "";
 
         List<Integer> randList = new ArrayList<>(); // 랜덤 값
-        List<Integer> cntList = new ArrayList<>(); // 중복 제거
+        List<Integer> countList = new ArrayList<>(); // 중복 제거
 
         int temp = 0; // 랜덤 값
         for (int i = 0; i < T; i++) {
@@ -63,36 +82,37 @@ public class Q2 {
             randList.add(temp);
 
             // 랜덤한 수에서 중복 제거
-            if (!cntList.contains(temp)) {
-                cntList.add(temp);
+            if (!countList.contains(temp)) {
+                countList.add(temp);
             }
         }
 
         int currentValue = 0; // 현재 값
-        int currentCnt = 0; // 현재 값의 빈도 수
+        int currentCount = 0; // 현재 값의 빈도 수
         int nextValue = 0; // 다음 값
-        int nextCnt = 0; // 다음 값의 빈도 수
+        int nextCount = 0; // 다음 값의 빈도 수
 
-        for (int i = 0; i < cntList.size(); i++) {
-            for (int j = i + 1; j < cntList.size(); j++) {
-                currentValue = cntList.get(i);
-                nextValue = cntList.get(j);
+        // 빈도수를 찾음과 동시에 bubbleSort
+        for (int i = 0; i < countList.size(); i++) {
+            for (int j = i + 1; j < countList.size(); j++) {
+                currentValue = countList.get(i);
+                nextValue = countList.get(j);
 
-                currentCnt = Collections.frequency(randList, currentValue);
-                nextCnt = Collections.frequency(randList, nextValue);
+                currentCount = freq(randList, currentValue);
+                nextCount = freq(randList, nextValue);
 
                 int tempValue = 0; // 임시 저장 값
                 // 내림차순 정렬
-                if (currentCnt < nextCnt) {
-                    bubbleSort(cntList, tempValue, currentValue, i, j, nextValue);
-                } else if (currentCnt == nextCnt && currentValue < nextValue) {
-                    bubbleSort(cntList, tempValue, currentValue, i, j, nextValue);
+                if (currentCount < nextCount) {
+                    bubbleSort(countList, tempValue, currentValue, i, j, nextValue);
+                } else if (currentCount == nextCount && currentValue < nextValue) {
+                    bubbleSort(countList, tempValue, currentValue, i, j, nextValue);
                 }
             }
         }
 
         out.println();
-        result = printArray(randList, cntList, printT) + " ";
+        result = printArray(randList, countList, printT) + " ";
 
         return result;
     }

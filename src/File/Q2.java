@@ -49,7 +49,7 @@ public class Q2 {
         countList.set(j, tempValue);
     }
 
-    public static int freq(List<Integer> countList, int n) {
+    public static int frequency(List<Integer> countList, int n) {
         int i;
         int count = 0;
 
@@ -62,13 +62,16 @@ public class Q2 {
         return count;
     }
 
-    public static String getData(Scanner fileReader) {
+    // public boolean contains(List<Integer> countList) {
+    // return indexOf(countList.toString()) > 1;
+    // }
+
+    public static String getData(int loopCount) {
         /*
          * 1. 배열에 random 값 담기 2. 중복 제거 된 배열 만들기 (contains 함수 사용 금지 - 새로 들어온 숫자가 기존 배열에
          * 있는지 체크하는 함수하나 만들기) 3. 중복 제거 된 배열 루프 돌면서 각각 몇 번 발생한 횟수 (발생 횟수 세는 함수 만들기) 4.
          * 발생한 횟수로 역순 정렬 5. 출력
          */
-        int T = Integer.parseInt(fileReader.nextLine()); // 생성할 랜덤 값 개수
         int printT = 5; // 출력할 랜덤 값 개수
         String result = "";
 
@@ -76,7 +79,7 @@ public class Q2 {
         List<Integer> countList = new ArrayList<>(); // 중복 제거
 
         int temp = 0; // 랜덤 값
-        for (int i = 0; i < T; i++) {
+        for (int i = 0; i < loopCount; i++) {
             // T 값만큼 랜덤한 수를 생성
             temp = (int) (Math.random() * (99 - 11 + 1) + 11);
             randList.add(temp);
@@ -98,8 +101,8 @@ public class Q2 {
                 currentValue = countList.get(i);
                 nextValue = countList.get(j);
 
-                currentCount = freq(randList, currentValue);
-                nextCount = freq(randList, nextValue);
+                currentCount = frequency(randList, currentValue);
+                nextCount = frequency(randList, nextValue);
 
                 int tempValue = 0; // 임시 저장 값
                 // 내림차순 정렬
@@ -117,8 +120,8 @@ public class Q2 {
         return result;
     }
 
-    public static void writeResult(Scanner getResult, FileManager mFM) {
-        String getData = getData(getResult);
+    public static void writeResult(int loopCount, FileManager mFM) {
+        String getData = getData(loopCount);
         writeFile(mFM, getData);
     }
 
@@ -136,13 +139,15 @@ public class Q2 {
 
         if (selectNum == 1) {
             fileReader = readFile(mFM, "data2.txt");
-            writeResult(fileReader, mFM);
+            int loopCount = Integer.parseInt(fileReader.nextLine()); // 생성할 랜덤 값 개수
+            writeResult(loopCount, mFM);
             mainMenuInput.close();
 
         } else if (selectNum == 2) {
             fileReader = new Scanner(System.in);
             out.print("데이터의 수량을 입력해주세요 : ");
-            writeResult(fileReader, mFM);
+            int loopCount = Integer.parseInt(fileReader.nextLine()); // 생성할 랜덤 값 개수
+            writeResult(loopCount, mFM);
             mainMenuInput.close();
         }
     }

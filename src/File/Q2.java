@@ -87,8 +87,8 @@ public class Q2 {
             // 랜덤한 수에서 중복 제거
             for (int j = 0; j <= i; j++) {
                 if (temp[i] == temp[j]) {
-                    countList.add(temp[i]);
                     i--;
+                    countList.add(temp[j]);
                 }
             }
             // if (randList.get(i) == temp) {

@@ -55,17 +55,22 @@ public class Q1 {
             sum += randomArray[i];
         }
 
+        out.println(sum);
+
         average = sum / randomArray.length; // 평균 계산
+        out.println(average);
 
         // 분산 값 저장
         for (i = 0; i < randomArray.length; i++) {
             total += (randomArray[i] - average) * (randomArray[i] - average);
+            out.println(total + " " + i);
         }
 
         // 분산 계산
         variance = total / loopCount;
+        out.print(variance);
 
-        // 표준 편차 계산
+        // 표준 편차
         standardDeviation = Math.sqrt(variance);
 
         out.print("\n");

@@ -1,7 +1,6 @@
 package File;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,7 +34,7 @@ public class Q2 {
         // 랜덤 배열 최빈도 수 내림차순 출력
         for (int i = 0; i < printCnt; i++) {
             out.print("#" + (i + 1) + " " + cntArr.get(i));
-            out.println(" (" + Collections.frequency(randArr, cntArr.get(i)) + ")");
+            out.println(" (" + frequency(randArr, cntArr.get(i)) + ")");
             setResult += "#" + (i + 1) + " " + cntArr.get(i) + "\n";
         }
 
@@ -63,8 +62,9 @@ public class Q2 {
     }
 
     // public boolean contains(List<Integer> countList) {
-    // return indexOf(countList.toString()) > 1;
-    // }
+    public boolean contains(int countElement) {
+        return true;
+    }
 
     public static String getData(int loopCount) {
         /*
@@ -78,16 +78,36 @@ public class Q2 {
         List<Integer> randList = new ArrayList<>(); // 랜덤 값
         List<Integer> countList = new ArrayList<>(); // 중복 제거
 
-        int temp = 0; // 랜덤 값
+        int temp[] = new int[loopCount]; // 랜덤 값
         for (int i = 0; i < loopCount; i++) {
             // T 값만큼 랜덤한 수를 생성
-            temp = (int) (Math.random() * (99 - 11 + 1) + 11);
-            randList.add(temp);
+            temp[i] = (int) (Math.random() * (99 - 11 + 1) + 11);
+            randList.add(temp[i]);
 
             // 랜덤한 수에서 중복 제거
-            if (!countList.contains(temp)) {
-                countList.add(temp);
+            for (int j = 0; j <= i; j++) {
+                if (temp[i] == temp[j]) {
+                    countList.add(temp[i]);
+                    i--;
+                }
             }
+            // if (randList.get(i) == temp) {
+            // countList.add(temp);
+            // }
+            // for (int num : randList) {
+            // if (num == temp) {
+            // countList.add(temp);
+            // }
+            // }
+            // for (int j = 0; j < i; j++) {
+            // if (temp[i] == temp[j]) {
+            // i--;
+            // countList.add(temp[j]);
+            // }
+            // }
+            // if (!countList.contains(temp[i])) {
+            // countList.add(temp[i]);
+            // }
         }
 
         int currentValue = 0; // 현재 값

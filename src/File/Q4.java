@@ -30,6 +30,8 @@ public class Q4 {
 
         String result = "";
 
+        boolean isDifference = false;
+
         for (int i = 1; i <= readLine; i++) {
             if (!fileReader.hasNextLine()) {
                 System.out.println("더 이상 줄을 받아올 수 없습니다.");
@@ -43,8 +45,20 @@ public class Q4 {
                 last = getData.substring(j, j + j);
 
                 if (first.equals(last)) {
+                    out.println("ddddddddd");
                     result += "#" + i + " " + first.length() + "\n";
                     break;
+                }
+
+                if (j == 1) {
+                    out.println("----------");
+                    first = getData.substring(0, 1);
+                    last = getData.substring(1, 2);
+
+                    if (first.equals(last)) {
+                        result += "#" + i + " " + first.length() + "\n";
+                        break;
+                    }
                 }
             }
         }

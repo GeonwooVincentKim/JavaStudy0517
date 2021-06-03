@@ -21,49 +21,71 @@ public class Q1 {
         return (int) (Math.random() * (n2 - n1 + 1)) + n1;
     }
 
-    public static String getData(Scanner fileReader) {
-        int readLine = Integer.parseInt(fileReader.nextLine());
+    public static String getData(int loopCount) {
+        // RNDM
+        // int randomArray = 0;
+        int[] randomArray = new int[loopCount];
 
-        int storeRanNum = 0;
-
-        double avg = 0; // 평균
-        double sum = 0; // 분산 값을 더하기 위한 합
-        double breakUp = 0; // 분산
-        double standard = 0; // 표준편차
+        double average = 0; // 평균
+        double sum = 0; // 랜덤 값을 더하기 위한 합
+        double variance; // 분산
+        double standardDeviation; // 표준편차
+        double total = 0; // 분산 값을 더하기 위한 값
 
         String result = "";
         String loopResult = "";
 
-        for (int i = 1; i <= readLine; i++) {
-            storeRanNum = randomRange(11, 99);
-            avg += storeRanNum / readLine;
-            sum += (storeRanNum - avg) * (storeRanNum - avg);
-            breakUp = sum / storeRanNum;
+        // 합계
+        // for : 개별숫자합
 
-            out.print(storeRanNum + " ");
-            loopResult += storeRanNum + " ";
+        // 평균 : 합계 / loopCount
+
+        // 분산
+        // for : (개별숫자- 평균) 제곱
+
+        // 표준편차
+        // 분산 sqrt
+        int i = 1;
+
+        // 합계 저장 및 randomArray 출력
+        for (i = 0; i < randomArray.length; i++) {
+            randomArray[i] = randomRange(11, 99);
+            out.print(randomArray[i] + " ");
+            loopResult += randomArray[i] + " ";
+            sum += randomArray[i];
         }
 
-        standard = Math.sqrt(breakUp);
+        average = sum / randomArray.length; // 평균 계산
+
+        // 분산 값 저장
+        for (i = 0; i < randomArray.length; i++) {
+            total += (randomArray[i] - average) * (randomArray[i] - average);
+        }
+
+        // 분산 계산
+        variance = total / loopCount;
+
+        // 표준 편차 계산
+        standardDeviation = Math.sqrt(variance);
 
         out.print("\n");
-        out.printf("평균 : %.2f", avg);
+        out.printf("평균 : %.2f", average);
         out.print("\n");
 
-        out.printf("분산 : %.2f", breakUp);
+        out.printf("분산 : %.2f", variance);
         out.print("\n");
 
-        out.printf("표준 편차 : %.2f", standard);
+        out.printf("표준 편차 : %.2f", standardDeviation);
         out.print("\n");
 
-        result = loopResult + "\n" + "평균 : " + String.format("%.2f", avg) + "\n" + "분산 : "
-                + String.format("%.2f", breakUp) + "\n" + "표준 편차 : " + String.format("%.2f", standard);
+        result = loopResult + "\n" + "평균 : " + String.format("%.2f", average) + "\n" + "분산 : "
+                + String.format("%.2f", variance) + "\n" + "표준 편차 : " + String.format("%.2f", standardDeviation);
 
         return result;
     }
 
-    public static void writeResult(Scanner getResult, FileManager mFM) {
-        String getData = getData(getResult);
+    public static void writeResult(int loopResult, FileManager mFM) {
+        String getData = getData(loopResult);
         writeFile(mFM, getData);
     }
 
@@ -81,13 +103,15 @@ public class Q1 {
 
         if (selectNum == 1) {
             fileReader = readFile(mFM, "data1.txt");
-            writeResult(fileReader, mFM);
+            int loopCount = Integer.parseInt(fileReader.nextLine());
+            writeResult(loopCount, mFM);
             mainMenuInput.close();
 
         } else if (selectNum == 2) {
             fileReader = new Scanner(System.in);
             out.print("데이터의 수량을 입력해주세요 : ");
-            writeResult(fileReader, mFM);
+            int loopCount = Integer.parseInt(fileReader.nextLine());
+            writeResult(loopCount, mFM);
             mainMenuInput.close();
         }
     }

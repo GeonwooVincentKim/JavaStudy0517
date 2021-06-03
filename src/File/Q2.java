@@ -85,12 +85,17 @@ public class Q2 {
             randList.add(temp[i]);
 
             // 랜덤한 수에서 중복 제거
-            for (int j = 0; j <= i; j++) {
-                if (temp[i] == temp[j]) {
-                    i--;
-                    countList.add(temp[j]);
+            for (int j = 0; j < i; j++) {
+                if (randList.get(i).equals(randList.get(j))) {
+                    countList.add(temp[i]);
                 }
             }
+            // for (int j = 0; j < i; j++) {
+            // if (temp[i] == temp[j]) {
+            // i--;
+            // countList.add(temp[j]);
+            // }
+            // }
             // if (randList.get(i) == temp) {
             // countList.add(temp);
             // }
@@ -107,6 +112,7 @@ public class Q2 {
             // }
             // if (!countList.contains(temp[i])) {
             // countList.add(temp[i]);
+            // out.println(countList);
             // }
         }
 
@@ -135,7 +141,25 @@ public class Q2 {
         }
 
         out.println();
-        result = printArray(randList, countList, printT) + " ";
+        // result = printArray(randList, countList, printT) + " ";
+
+        String setResult = "";
+
+        // 랜덤 배열 출력
+        for (int i = 0; i < randList.size(); i++) {
+            out.print(randList.get(i) + " ");
+            setResult += randList.get(i) + " ";
+        }
+
+        out.println();
+        setResult += "\n";
+
+        // 랜덤 배열 최빈도 수 내림차순 출력
+        for (int i = 0; i < countList.size(); i++) {
+            out.print("#" + (i + 1) + " " + countList.get(i));
+            out.println(" (" + frequency(randList, countList.get(i)) + ")");
+            setResult += "#" + (i + 1) + " " + countList.get(i) + "\n";
+        }
 
         return result;
     }

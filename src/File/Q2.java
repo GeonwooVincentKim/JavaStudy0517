@@ -61,10 +61,56 @@ public class Q2 {
         return count;
     }
 
+    // public int indexOf()
+
     // public boolean contains(List<Integer> countList) {
-    public boolean contains(int countElement) {
-        return true;
+    public int indexOf(List<Integer> countList) {
+        int i = 0;
+        for (i = 0; i < countList.size(); i++) {
+            if (countList.get(i).equals(countList.get(i))) {
+                return i;
+            }
+        }
+
+        return -1;
     }
+    // public int indexOf(Object countList){
+    // int i = 0;
+    // int size = 0;
+    // int arr[] = new int[size];
+    // for(i = 0; i < size; i++){
+    // if(arr[i].equals(countList)){
+    // return i;
+    // }
+    // }
+
+    // return -1;
+    // }
+
+    public static int[] convertToIntArray(List<Integer> countList) {
+        int[] returnArray = new int[countList.size()];
+        for (int i = 0; i < returnArray.length; i++) {
+            returnArray[i] = countList.get(i).intValue();
+        }
+        return returnArray;
+    }
+
+    public boolean containList(List<Integer> countList) {
+
+        if (indexOf(countList) >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // private int indexOf(Object countElement) {
+    // int i = 0;
+    // for(i = 0 ; i < size; i++){
+    // if(array)
+    // }
+    // return 0;
+    // }
 
     public static String getData(int loopCount) {
         /*
@@ -85,11 +131,15 @@ public class Q2 {
             randList.add(temp[i]);
 
             // 랜덤한 수에서 중복 제거
-            for (int j = 0; j < i; j++) {
-                if (randList.get(i).equals(randList.get(j))) {
-                    countList.add(temp[i]);
-                }
-            }
+            temp = convertToIntArray(countList);
+            // if (!countList.containList(temp[i])) {
+
+            // }
+            // for (int j = 0; j < i; j++) {
+            // if (randList.get(i).equals(randList.get(j))) {
+            // countList.add(temp);
+            // }
+            // }
             // for (int j = 0; j < i; j++) {
             // if (temp[i] == temp[j]) {
             // i--;
@@ -110,10 +160,10 @@ public class Q2 {
             // countList.add(temp[j]);
             // }
             // }
-            // if (!countList.contains(temp[i])) {
-            // countList.add(temp[i]);
-            // out.println(countList);
-            // }
+            if (!countList.contains(temp[i])) {
+                countList.add(temp[i]);
+                out.println(countList);
+            }
         }
 
         int currentValue = 0; // 현재 값

@@ -22,87 +22,58 @@ public class Q1 {
     }
 
     public static int[] getRandomNumber(int[] randomArray) {
-        int i = 0;
-        int getRandomArray[] = new int[randomArray.length];
         String loopResult = ""; // 출력된 getRandomArray 값들을 저장
 
-        for (i = 0; i < getRandomArray.length; i++) {
-            getRandomArray[i] = randomRange(11, 99);
+        for (int i = 0; i < randomArray.length; i++) {
+            randomArray[i] = randomRange(11, 99);
             // getRandomArray[i] = (int) (Math.random() * (99 - 11 + 1)) + 11;
-            out.print(getRandomArray[i] + " ");
-            loopResult += getRandomArray[i] + " ";
+            out.print(randomArray[i] + " ");
+            loopResult += randomArray[i] + " ";
         }
 
-        return getRandomArray;
+        return randomArray;
     }
 
     public static String printRandomNumber(int[] randomArray) {
-        int i = 0;
-        int getRandomArray[] = new int[randomArray.length];
-        int printRandomArray[] = getRandomNumber(getRandomArray);
         String loopResult = "";
 
-        for (i = 0; i < printRandomArray.length; i++) {
-            printRandomArray[i] = randomArray[i];
-            loopResult += printRandomArray[i];
+        for (int i = 0; i < randomArray.length; i++) {
+            loopResult += randomArray[i] + " ";
         }
 
         return loopResult;
     }
 
-    public static double sumRandomNumber(int[] randomArray) {
-        int i = 0;
-        int getRandomArray[] = new int[randomArray.length];
-        int sumRandomArray[] = getRandomNumber(getRandomArray);
-        out.println(sumRandomArray.length);
+    public static int sumArray(int[] arr) {
+        int sum = 0;
 
-        double sum = 0;
-        // double getRandomValue = 0;
-
-        for (i = 0; i < sumRandomArray.length; i++) {
-            // out.println(getRandomNumber(getRandomArray));
-            sum += sumRandomArray[i];
-            // getRandomValue = Double.valueOf(getRandomValue(randomArray));
-            // sum += getRandomNumber(randomArray);
-            out.println(sum + " ");
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
         }
-
         return sum;
     }
 
-    public static double averageRandomNumber(int[] randomArray) {
-        int i = 0;
-        int getRandomArray[] = new int[randomArray.length];
-        // int sumRandomArray[] = getRandomNumber(getRandomArray);
-
-        double sum = sumRandomNumber(getRandomArray);
-
-        double average = 0;
-        average = sumRandomNumber(getRandomArray) / getRandomArray.length;
-
-        return average;
-        // double average = 0;
-
-        // average = sum / averageRandomNumber.length;
-
-        // return average;
+    public static double averageArray(double sum, int length) {
+        return sum / length;
     }
 
-    // public static int[] varianceRandomNumber(int[] randomArray, double average) {
-    // int i = 0;
-    // double total = 0;
-    // int getRandomArray[] = new int[randomArray.length];
-    // int varianceRandomArray[] = getRandomNumber(getRandomArray);
-    // double getSum = averageRandomNumber(getRandomArray, average);
+    public static double varianceTotal(int[] arr, double average) {
+        double total = 0;
 
-    // for (i = 0; i < varianceRandomArray.length; i++) {
-    // total += (varianceRandomArray[i] - getSum) * (varianceRandomArray[i] -
-    // getSum);
-    // out.println(total + " " + i);
-    // }
+        for (int i = 0; i < arr.length; i++) {
+            total += (arr[i] - average) * (arr[i] - average);
+        }
 
-    // return varianceRandomArray;
-    // }
+        return total;
+    }
+
+    public static double variance(double total, int length) {
+        return Double.parseDouble(String.format("%.2f", total / length));
+    }
+
+    public static double standardDeviation(double variance) {
+        return Double.parseDouble(String.format("%.2f", Math.sqrt(variance)));
+    }
 
     public static String getData(int loopCount) {
         // RNDM
@@ -128,42 +99,31 @@ public class Q1 {
 
         // 표준편차
         // 분산 sqrt
-        int i = 1;
 
-        // 합계 저장 및 randomArray 출력
-        // randomArray = getRandomNumber(randomArray);
+        // randomArray 출력
+        randomArray = getRandomNumber(randomArray);
+        loopResult = printRandomNumber(randomArray);
+        out.println();
 
-        // for (i = 0; i < randomArray.length; i++) {
-        // randomArray[i] = randomRange(11, 99);
-        // out.print(randomArray[i] + " ");
-        // }
-        // loopResult = printRandomNumber(randomArray);
-        // sum = sumRandomNumber(randomArray);
-
-        // for (i = 0; i < randomArray.length; i++) {
-        // // loopResult += randomArray[i] + " ";
-        // sum += randomArray[i];
-        // }
-
+        // 합계 계산
+        sum = sumArray(randomArray);
         // out.println(sum);
 
-        average = averageRandomNumber(randomArray);
-        // average = sum / randomArray.length; // 평균 계산
-        out.println(average);
+        // 평균 계산
+        average = averageArray(sum, randomArray.length);
+        // out.println(average);
 
         // 분산 값 저장
-        // varianceRandomNumber(randomArray, average);
-        for (i = 0; i < randomArray.length; i++) {
-            total += (randomArray[i] - average) * (randomArray[i] - average);
-            // out.println(total + " " + i);
-        }
+        total = varianceTotal(randomArray, average);
+        // out.println(total);
 
         // 분산 계산
-        variance = total / loopCount;
-        // out.print(variance);
+        variance = variance(total, randomArray.length);
+        // out.println(variance);
 
         // 표준 편차
-        standardDeviation = Math.sqrt(variance);
+        standardDeviation = standardDeviation(variance);
+        // out.println(standardDeviation);
 
         out.print("\n");
         out.printf("평균 : %.2f", average);

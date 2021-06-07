@@ -160,6 +160,9 @@ public class Q2 {
             // countList.add(temp[j]);
             // }
             // }
+        }
+
+        for (int i = 0; i < loopCount; i++) {
             if (!countList.contains(temp[i])) {
                 countList.add(temp[i]);
                 out.println(countList);

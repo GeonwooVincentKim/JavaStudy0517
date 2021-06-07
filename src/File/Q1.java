@@ -155,24 +155,6 @@ public class Q1 {
 
         // 표준편차
         // 분산 sqrt
-        int i = 1;
-
-        // 합계 저장 및 randomArray 출력
-        // randomArray = getRandomNumber(randomArray);
-
-        // for (i = 0; i < randomArray.length; i++) {
-        // randomArray[i] = randomRange(11, 99);
-        // out.print(randomArray[i] + " ");
-        // }
-        // loopResult = printRandomNumber(randomArray);
-        // sum = sumRandomNumber(randomArray);
-
-        // for (i = 0; i < randomArray.length; i++) {
-        // // loopResult += randomArray[i] + " ";
-        // sum += randomArray[i];
-        // }
-
-        // out.println(sum);
 
         // randomArray 값 추출
         randomArray = getRandomNumber(randomArray);

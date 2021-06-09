@@ -50,11 +50,7 @@ public class Q3 {
         return array;
     }
 
-    public static String getData(Scanner fileReader) {
-        out.println();
-        int readFile = Integer.parseInt(fileReader.nextLine());
-        out.print(readFile);
-
+    public static String getData(int readFile) {
         int[][] splitNumLength = new int[readFile][readFile];
         int[][] getMatrix = splitNumLength;
 
@@ -73,8 +69,8 @@ public class Q3 {
         return result;
     }
 
-    public static void writeResult(Scanner getResult, FileManager mFM) {
-        String getData = getData(getResult);
+    public static void writeResult(int readFile, FileManager mFM) {
+        String getData = getData(readFile);
         writeFile(mFM, getData);
     }
 
@@ -92,13 +88,15 @@ public class Q3 {
 
         if (selectNum == 1) {
             fileReader = readFile(mFM, "data3.txt");
-            writeResult(fileReader, mFM);
+            int readFile = Integer.parseInt(fileReader.nextLine());
+            writeResult(readFile, mFM);
             mainMenuInput.close();
 
         } else if (selectNum == 2) {
             fileReader = new Scanner(System.in);
             out.print("데이터의 수량을 입력해주세요 : ");
-            writeResult(fileReader, mFM);
+            int readFile = Integer.parseInt(fileReader.nextLine());
+            writeResult(readFile, mFM);
             mainMenuInput.close();
         }
     }

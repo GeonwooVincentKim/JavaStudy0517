@@ -27,6 +27,11 @@ public class Q2 {
             out.print(randArr.get(i) + " ");
             setResult += randArr.get(i) + " ";
         }
+        out.println();
+
+        for (int i = 0; i < cntArr.size(); i++) {
+            out.print(cntArr.get(i) + " ");
+        }
 
         out.println();
         setResult += "\n";
@@ -125,56 +130,74 @@ public class Q2 {
         List<Integer> countList = new ArrayList<>(); // 중복 제거
 
         int temp[] = new int[loopCount]; // 랜덤 값
-        for (int i = 0; i < loopCount; i++) {
+        // temp = extracted3(randList, temp);
+        randList = getRandomList(randList, temp);
+
+        // temp = extracted2(countList, temp);
+        countList = countRandomList(countList, temp);
+
+        // 빈도수를 찾음과 동시에 bubbleSort
+        result = getResult(printT, randList, countList);
+
+        return result;
+    }
+
+    private static String getResult(int printT, List<Integer> randList, List<Integer> countList) {
+        String result;
+        arrangeRandomList(randList, countList);
+
+        // out.println();
+        result = printArray(randList, countList, printT) + " ";
+        return result;
+    }
+
+    // private static int[] extracted3(List<Integer> randList, int[] temp) {
+    // for (int i = 0; i < temp.length; i++) {
+    // // T 값만큼 랜덤한 수를 생성
+    // temp[i] = (int) (Math.random() * (99 - 11 + 1) + 11);
+    // randList.add(temp[i]);
+    // }
+
+    // return temp;
+    // }
+
+    private static List<Integer> getRandomList(List<Integer> randList, int[] temp) {
+        for (int i = 0; i < temp.length; i++) {
             // T 값만큼 랜덤한 수를 생성
             temp[i] = (int) (Math.random() * (99 - 11 + 1) + 11);
             randList.add(temp[i]);
-
-            // 랜덤한 수에서 중복 제거
-            // temp = convertToIntArray(countList);
-            // if (!countList.containList(temp[i])) {
-
-            // }
-            // for (int j = 0; j < i; j++) {
-            // if (randList.get(i).equals(randList.get(j))) {
-            // countList.add(temp);
-            // }
-            // }
-            // for (int j = 0; j < i; j++) {
-            // if (temp[i] == temp[j]) {
-            // i--;
-            // countList.add(temp[j]);
-            // }
-            // }
-            // if (randList.get(i) == temp) {
-            // countList.add(temp);
-            // }
-            // for (int num : randList) {
-            // if (num == temp) {
-            // countList.add(temp);
-            // }
-            // }
-            // for (int j = 0; j < i; j++) {
-            // if (temp[i] == temp[j]) {
-            // i--;
-            // countList.add(temp[j]);
-            // }
-            // }
         }
 
-        for (int i = 0; i < loopCount; i++) {
+        return randList;
+    }
+
+    // private static int[] extracted2(List<Integer> countList, int[] temp) {
+    // for (int i = 0; i < temp.length; i++) {
+    // // 랜덤한 수에서 중복 제거
+    // if (!countList.contains(temp[i])) {
+    // countList.add(temp[i]);
+    // }
+    // }
+
+    // return temp;
+    // }
+    private static List<Integer> countRandomList(List<Integer> countList, int[] temp) {
+        for (int i = 0; i < temp.length; i++) {
+            // 랜덤한 수에서 중복 제거
             if (!countList.contains(temp[i])) {
                 countList.add(temp[i]);
-                out.println(countList);
             }
         }
 
+        return countList;
+    }
+
+    private static void arrangeRandomList(List<Integer> randList, List<Integer> countList) {
         int currentValue = 0; // 현재 값
         int currentCount = 0; // 현재 값의 빈도 수
         int nextValue = 0; // 다음 값
         int nextCount = 0; // 다음 값의 빈도 수
 
-        // 빈도수를 찾음과 동시에 bubbleSort
         for (int i = 0; i < countList.size(); i++) {
             for (int j = i + 1; j < countList.size(); j++) {
                 currentValue = countList.get(i);
@@ -192,29 +215,6 @@ public class Q2 {
                 }
             }
         }
-
-        out.println();
-        result = printArray(randList, countList, printT) + " ";
-
-        // String setResult = "";
-
-        // // 랜덤 배열 출력
-        // for (int i = 0; i < randList.size(); i++) {
-        // out.print(randList.get(i) + " ");
-        // setResult += randList.get(i) + " ";
-        // }
-
-        // out.println();
-        // setResult += "\n";
-
-        // // 랜덤 배열 최빈도 수 내림차순 출력
-        // for (int i = 0; i < countList.size(); i++) {
-        // out.print("#" + (i + 1) + " " + countList.get(i));
-        // out.println(" (" + frequency(randList, countList.get(i)) + ")");
-        // setResult += "#" + (i + 1) + " " + countList.get(i) + "\n";
-        // }
-
-        return result;
     }
 
     public static void writeResult(int loopCount, FileManager mFM) {

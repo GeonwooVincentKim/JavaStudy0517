@@ -53,11 +53,21 @@ public class Q2 {
         countList.set(j, tempValue);
     }
 
+    public static boolean containsList(List<Integer> countList, int temp) {
+        boolean result = false;
+        for (int i = 0; i < countList.size(); i++) {
+            if (countList.get(i) != temp) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
     public static int frequency(List<Integer> countList, int n) {
-        int i;
         int count = 0;
 
-        for (i = 0; i < countList.size(); i++) {
+        for (int i = 0; i < countList.size(); i++) {
             if (countList.get(i) == n) {
                 count++;
             }
@@ -66,31 +76,14 @@ public class Q2 {
         return count;
     }
 
-    // public int indexOf()
-
-    // public boolean contains(List<Integer> countList) {
-    public int indexOf(List<Integer> countList) {
-        int i = 0;
-        for (i = 0; i < countList.size(); i++) {
-            if (countList.get(i).equals(countList.get(i))) {
-                return i;
+    public static boolean isContains(List<Integer> countList, int temp) {
+        for (int i = 0; i < countList.size(); i++) {
+            if (countList.get(i) == temp) {
+                return true;
             }
         }
-
-        return -1;
+        return false;
     }
-    // public int indexOf(Object countList){
-    // int i = 0;
-    // int size = 0;
-    // int arr[] = new int[size];
-    // for(i = 0; i < size; i++){
-    // if(arr[i].equals(countList)){
-    // return i;
-    // }
-    // }
-
-    // return -1;
-    // }
 
     public static int[] convertToIntArray(List<Integer> countList) {
         int[] returnArray = new int[countList.size()];
@@ -99,23 +92,6 @@ public class Q2 {
         }
         return returnArray;
     }
-
-    public boolean containList(List<Integer> countList) {
-
-        if (indexOf(countList) >= 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // private int indexOf(Object countElement) {
-    // int i = 0;
-    // for(i = 0 ; i < size; i++){
-    // if(array)
-    // }
-    // return 0;
-    // }
 
     public static String getData(int loopCount) {
         /*
@@ -142,7 +118,7 @@ public class Q2 {
         return result;
     }
 
-    private static String getResult(int printT, List<Integer> randList, List<Integer> countList) {
+    public static String getResult(int printT, List<Integer> randList, List<Integer> countList) {
         String result;
         arrangeRandomList(randList, countList);
 
@@ -151,17 +127,7 @@ public class Q2 {
         return result;
     }
 
-    // private static int[] extracted3(List<Integer> randList, int[] temp) {
-    // for (int i = 0; i < temp.length; i++) {
-    // // T 값만큼 랜덤한 수를 생성
-    // temp[i] = (int) (Math.random() * (99 - 11 + 1) + 11);
-    // randList.add(temp[i]);
-    // }
-
-    // return temp;
-    // }
-
-    private static List<Integer> getRandomList(List<Integer> randList, int[] temp) {
+    public static List<Integer> getRandomList(List<Integer> randList, int[] temp) {
         for (int i = 0; i < temp.length; i++) {
             // T 값만큼 랜덤한 수를 생성
             temp[i] = (int) (Math.random() * (99 - 11 + 1) + 11);
@@ -171,20 +137,10 @@ public class Q2 {
         return randList;
     }
 
-    // private static int[] extracted2(List<Integer> countList, int[] temp) {
-    // for (int i = 0; i < temp.length; i++) {
-    // // 랜덤한 수에서 중복 제거
-    // if (!countList.contains(temp[i])) {
-    // countList.add(temp[i]);
-    // }
-    // }
-
-    // return temp;
-    // }
-    private static List<Integer> countRandomList(List<Integer> countList, int[] temp) {
+    public static List<Integer> countRandomList(List<Integer> countList, int[] temp) {
         for (int i = 0; i < temp.length; i++) {
             // 랜덤한 수에서 중복 제거
-            if (!countList.contains(temp[i])) {
+            if (!isContains(countList, temp[i])) {
                 countList.add(temp[i]);
             }
         }
@@ -192,7 +148,7 @@ public class Q2 {
         return countList;
     }
 
-    private static void arrangeRandomList(List<Integer> randList, List<Integer> countList) {
+    public static void arrangeRandomList(List<Integer> randList, List<Integer> countList) {
         int currentValue = 0; // 현재 값
         int currentCount = 0; // 현재 값의 빈도 수
         int nextValue = 0; // 다음 값

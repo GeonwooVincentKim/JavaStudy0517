@@ -64,6 +64,9 @@ public class Q2 {
         return result;
     }
 
+    // 숫자의 빈도수를 countList 의 size 만큼 비교하면서,
+    // 만약 countList 의 size 에 현재 수와 같은 숫자가 다른 위치의 index 에 있다면
+    // count 을 1씩 증가시켜 빈도수를 출력한다.
     public static int frequency(List<Integer> countList, int n) {
         int count = 0;
 
@@ -76,6 +79,9 @@ public class Q2 {
         return count;
     }
 
+    // countList 의 size 만큼 현재 숫자와 비교하면서,
+    // 만약 countList 의 size 안에서 현재 숫자와 같은 숫자가 존재한다면,
+    // true 를 return 하여 반복되는 숫자가 있다고 출력한다.
     public static boolean isContains(List<Integer> countList, int temp) {
         for (int i = 0; i < countList.size(); i++) {
             if (countList.get(i) == temp) {
@@ -118,6 +124,8 @@ public class Q2 {
         return result;
     }
 
+    // 값을 출력하기 전, arrangeRandomList 를 호출함으로써 빈도수 찾기 및 Array 정렬을 진행하고,
+    // arrangeRandomList 의 함수의 randList 와 countList 값을 넘겨 받아 값을 printArray 에서 출력한다.
     public static String getResult(int printT, List<Integer> randList, List<Integer> countList) {
         String result;
         arrangeRandomList(randList, countList);

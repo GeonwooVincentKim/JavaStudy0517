@@ -38,28 +38,51 @@ public class Q4 {
                 break;
             }
 
-            getData = fileReader.nextLine();
+            int len = 0;
+            boolean alpha[] = new boolean[125];
+            String pattern = "";
+
+            getData = fileReader.next();
 
             for (int j = 1; j <= getData.length(); j++) {
                 first = getData.substring(0, j);
-                last = getData.substring(j, j + j);
+                last = getData.substring(j, j * 2);
 
                 if (first.equals(last)) {
-                    out.println("ddddddddd");
+                    // out.println("ddddddddd");
                     result += "#" + i + " " + first.length() + "\n";
                     break;
                 }
 
-                if (j == 1) {
-                    out.println("----------");
-                    first = getData.substring(0, 1);
-                    last = getData.substring(1, 2);
+                // if (j == 1) {
+                // // out.println("----------");
+                // first = getData.substring(0, 1);
+                // last = getData.substring(1, 2);
 
-                    if (first.equals(last)) {
-                        result += "#" + i + " " + first.length() + "\n";
-                        break;
-                    }
-                }
+                // if (first.equals(last)) {
+                // result += "#" + i + " " + first.length() + "\n";
+                // // result += "#" + i + " " + first.charAt(j) + "\n";
+                // break;
+                // }
+                // // else {
+                // // // result += "#" + i + " " + first.charAt(j) + "\n";
+                // // result += "#" + i + " " + first.length() + "\n";
+                // // break;
+                // // }
+                // }
+                // if (!alpha[(int) getData.charAt(j)]) {
+                // alpha[(int) getData.charAt(j)] = true;
+                // pattern += getData.charAt(j);
+                // } else {
+                // String competition = "";
+                // len = pattern.length();
+                // for (int k = len; k < len * 2; k++)
+                // competition += getData.charAt(k);
+                // if (pattern.equals(competition))
+                // break;
+                // else
+                // pattern += getData.charAt(j);
+                // }
             }
         }
 

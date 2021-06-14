@@ -48,10 +48,16 @@ public class Q4 {
                 first = getData.substring(0, j);
                 last = getData.substring(j, j * 2);
 
-                if (first.equals(last)) {
-                    // out.println("ddddddddd");
-                    result += "#" + i + " " + first.length() + "\n";
-                    break;
+                if (!alpha[(int) getData.charAt(j)]) {
+                    alpha[(int) getData.charAt(j)] = true;
+                    pattern += getData.charAt(j);
+                    out.println(pattern);
+                } else {
+                    if (first.equals(last)) {
+                        // out.println("ddddddddd");
+                        result += "#" + i + " " + first.length() + "\n";
+                        break;
+                    }
                 }
 
                 // if (j == 1) {
